@@ -14,6 +14,7 @@ import Settings from './components/Settings'
 // layouts
 import RootLayout from './layouts/RootLayout'
 import { ProfileLayout } from './layouts/ProfileLayout'
+import NotFound from './components/NotFound'
 
 
 const router = createBrowserRouter(
@@ -25,6 +26,8 @@ const router = createBrowserRouter(
         <Route path='League' element={<League />}/>
         <Route path='settings' element={<Settings />}/>
       </Route>
+
+      <Route path='*' element={<NotFound />}/>
     </Route>
   )
 )
