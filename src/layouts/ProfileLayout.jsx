@@ -23,6 +23,5 @@ export const ProfileLayout = () => {
       <GridItem colSpan={10}>
         <Outlet />
       </GridItem>
-    </Grid>
-  );
+    </Grid>  );
 };
