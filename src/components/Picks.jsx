@@ -1,4 +1,4 @@
-import { Box, Heading, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import Pick from "./PickCard";
 import { games } from "../data/games";
 
