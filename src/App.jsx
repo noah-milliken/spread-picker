@@ -4,7 +4,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 // components
 import Home from "./components/Home";
 import Picks from "./components/Picks";
@@ -15,6 +15,14 @@ import Settings from "./components/Settings";
 import RootLayout from "./layouts/RootLayout";
 import { ProfileLayout } from "./layouts/ProfileLayout";
 import NotFound from "./components/NotFound";
+
+const theme  = extendTheme({
+  colors: {
+
+  }
+})
+
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,7 +41,7 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <RouterProvider router={router} />
     </ChakraProvider>
   );
