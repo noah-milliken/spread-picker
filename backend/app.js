@@ -1,5 +1,17 @@
+require("dotenv").config();
+
 const express = require("express");
+const gamesRoutes = require("./routes/games");
+
+//express app
 const app = express();
+//middleware
+app.use(express.json());
+
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+});
 
 let games = [
   {
@@ -84,15 +96,8 @@ let games = [
   },
 ];
 
-app.get("/", (req, res) => {
-  res.send("Hello Mom");
+app.use(gamesRoutes);
+
+app.listen(process.env.PORT, () => {
+  console.log(`Listeining on port`, process.env.PORT);
 });
-
-app.get("/api/games", (req, res) => {
-  res.json(games);
-});
-
-const PORT = 3001;
-app.listen(PORT);
-
-console.log(`Server running on ${PORT}`);
