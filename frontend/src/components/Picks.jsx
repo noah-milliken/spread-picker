@@ -1,8 +1,20 @@
 import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import Pick from "./PickCard";
-import { games } from "../data/games";
 
+import { useEffect, useState } from "react";
+import axios from 'axios'
 const Picks = () => {
+  const [games, setGames] = useState([])
+  useEffect(()=> {
+    axios.get('http://localhost:3001/')
+      .then(res => {
+        setGames(res.data)
+        console.log(games)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },[])
   console.log(games);
   return (
     <Box>

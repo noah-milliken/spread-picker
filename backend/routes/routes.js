@@ -5,6 +5,7 @@ const Week = require("../models/gameModel");
 
 Routes.route("/")
   .get(async (req, res) => {
+    console.log("request made from frontend");
     const weeks = await Week.findAll();
     res.status(200).send(weeks);
   })
