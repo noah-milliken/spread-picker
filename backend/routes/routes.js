@@ -1,7 +1,7 @@
 const express = require("express");
 // const Game = require("../models/gameModel");
 const Routes = express.Router();
-const Week = require("../models/gameModel");
+const Week = require("../models/matchModel");
 
 Routes.route("/")
   .get(async (req, res) => {

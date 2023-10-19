@@ -12,9 +12,10 @@ const getOddsData = async () => {
 
     const responseData = response.data;
     const gamesArray = responseData;
-    console.log(gamesArray);
+
     const gamesObj = gamesArray.map((item) => {
       const game = {
+        gameId: item.id,
         weekNumber: 6,
         comenceTime: item.commence_time,
         homeTeam: item.home_team,
@@ -23,7 +24,7 @@ const getOddsData = async () => {
       };
       return game;
     });
-
+    console.log(gamesObj);
     console.log(JSON.stringify(gamesObj));
     console.log("Remaining requests", response.headers["x-requests-remaining"]);
     return JSON.stringify(gamesObj);
