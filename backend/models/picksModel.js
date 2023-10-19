@@ -19,6 +19,7 @@ Picks.init(
   },
   {
     sequelize,
+    gi,
   }
 );
 
