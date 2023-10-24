@@ -1,23 +1,13 @@
-const { Sequelize } = require("sequelize");
+const mysql = require("mysql2");
 
-// const sequelize = new Sequelize("spreadPicker", "user", "password", {
-//   dialect: "sqlite",
-//   host: "./spreadPickerDb.sqlite",
-// });
-const sequelize = new Sequelize("spread-picker-schema", "root", "squeak207", {
-  dialect: "mysql",
-});
-const User = require("./models/userModel");
-const Match = require("./models/matchModel");
-const Picks = require("./models/picksModel");
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log("connection successful");
+const pool = mysql
+  .createPool({
+    host: "127.0.0.1",
+    user: "root",
+    password: "Squeak207",
+    database: "spread_picker",
   })
-  .catch((err) => {
-    console.log("Error connecting to the database:", err);
-  });
+  .promise();
 
-sequelize.drop({ match: /_test$/ });
-module.exports = sequelize;
+const result = await pool.query("SELECT * from matches");
+console.log(result);
