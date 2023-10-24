@@ -16,11 +16,7 @@ import RootLayout from "./layouts/RootLayout";
 import { ProfileLayout } from "./layouts/ProfileLayout";
 import NotFound from "./components/NotFound";
 
-const theme  = extendTheme({
-  colors: {
 
-  }
-})
 
 
 const router = createBrowserRouter(
@@ -28,7 +24,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path="profile" element={<ProfileLayout />}>
-        <Route path="picks" element={<Picks />} />
+        <Route path="picks/:week" element={<Picks />} />
         <Route path="League" element={<League />} />
         <Route path="settings" element={<Settings />} />
       </Route>
@@ -40,7 +36,7 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider >
       <RouterProvider router={router} />
     </ChakraProvider>
   );
