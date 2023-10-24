@@ -8,7 +8,7 @@ const PickCard = ({ awayTeam, homeTeam, spread, gameId }) => {
 
     const handleTeamSelect = async (team, gameId) => {
       const data = {
-        pick: team, 
+        pgt ick: team, 
         user_id: userID,
         match_id: gameId
       }
