@@ -9,5 +9,4 @@ const pool = mysql
   })
   .promise();
 
-const result = await pool.query("SELECT * from matches");
-console.log(result);
+ module.exports = pool;

@@ -1,17 +1,20 @@
-require("dotenv").config();
-const PORT = process.env.PORT;
 const express = require("express");
+const bodyparser = require("body-parser");
+const cors = require("cors");
+const dotenv = require("dotenv");
+dotenv.config();
+const PORT = process.env.PORT || 8080;
 
-//express app
 const app = express();
+//routes
+const matchesRoutes = require("./routes/matches.routes");
+const picksRoutes = require("./routes/picks.routes");
+app.use(cors());
+app.use(bodyparser.json());
 
-//middleware
-
-app.get("/", (req, res) => {
-  console.log("I am a banana");
-  res.send("Hello World");
-});
+app.use("/matches", matchesRoutes);
+app.use("/picks", picksRoutes);
 
 app.listen(PORT, () => {
-  console.log("listening on port", process.env.PORT);
+  console.log(`Server Listening on Port: ${PORT}`);
 });
