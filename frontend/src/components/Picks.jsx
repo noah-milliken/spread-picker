@@ -5,20 +5,19 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 
 const Picks = () => {
+
   const { week } = useParams()
   const [games, setGames] = useState([])
-  console.log(typeof week)
+
   useEffect(()=> {
     axios.get(`http://localhost:8080/games/${Number(week)}`)
       .then(res => {
-        console.log(res.data)
         setGames(res.data)
       })
       .catch(err => {
         console.log(err)
       })
   },[week])
-
 
   return (
     <Box>
@@ -29,13 +28,15 @@ const Picks = () => {
         templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
       >
         {games.map((game, index) => (
-            console.log(game),
+          console.log(game),
+          
           <Pick
             key={index}
-            gameId ={game.game_id}
-            homeTeam={game.home}
-            awayTeam={game.away}
-            spread={game.spread}
+            gameId ={game.GameKey}
+            homeTeam={game.HomeTeam}
+            awayTeam={game.AwayTeam}
+            spread={game.PointSpread}
+          
           />
         ))}
       </SimpleGrid>
