@@ -15,6 +15,6 @@ exports.getWeekByNum = async (weekNum) => {
         `,
     [weekNum]
   );
-  console.log(week);
+  //console.log(week);
   return week;
 };

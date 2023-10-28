@@ -1,4 +1,4 @@
-import { Button, Text, Heading, Card, CardBody } from "@chakra-ui/react";
+import { Button, Text, Card, CardBody } from "@chakra-ui/react";
 import { sendPickToDb } from '../api'
 import { useParams } from "react-router-dom";
 
@@ -6,19 +6,19 @@ import { useParams } from "react-router-dom";
 
 const PickCard = ({ awayTeam, homeTeam, spread, gameId }) => {
   const {week} = useParams()
-  const userID = 1
+  const userID = 10
   ; 
   
 
     const handleTeamSelect = async (team, gameId) => {
       const data = {
-        Pick: team, 
-        UserID: userID,
-        Week: week,
-        GameKey: gameId
+        pick: team, 
+        user_id: userID,
+        week_num: week,
+        match_id: gameId
       }
       const response = await sendPickToDb(data);
-
+      
       console.log("Pick successfully sent:", response)
     }
 

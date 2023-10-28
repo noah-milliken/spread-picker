@@ -5,12 +5,11 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 
 const Picks = () => {
-
   const { week } = useParams()
   const [games, setGames] = useState([])
 
   useEffect(()=> {
-    axios.get(`http://localhost:8080/games/${Number(week)}`)
+    axios.get(`http://localhost:8080/matches/${Number(week)}`)
       .then(res => {
         setGames(res.data)
       })
@@ -28,14 +27,14 @@ const Picks = () => {
         templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
       >
         {games.map((game, index) => (
-          console.log(game),
+          
           
           <Pick
             key={index}
-            gameId ={game.GameKey}
-            homeTeam={game.HomeTeam}
-            awayTeam={game.AwayTeam}
-            spread={game.PointSpread}
+            gameId ={game.match_id}
+            homeTeam={game.home_team}
+            awayTeam={game.away_team}
+            spread={game.point_spread}
           
           />
         ))}

@@ -24,8 +24,7 @@ const getOddsData = async () => {
       };
       return game;
     });
-    console.log(gamesObj);
-    console.log(JSON.stringify(gamesObj));
+    // console.log(JSON.stringify(gamesObj));
     console.log("Remaining requests", response.headers["x-requests-remaining"]);
     return JSON.stringify(gamesObj);
   } catch (error) {
