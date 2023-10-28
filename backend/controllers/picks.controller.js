@@ -21,4 +21,16 @@ module.exports = {
     const result = await Pick.make(pick, user_id, week_num, match_id);
     res.send(result);
   },
+  evaluate: async (req, res) => {
+    console.log("evaluate controller");
+    const result = await Pick.evaluate();
+    res.send(result);
+  },
+  calculateCorrect: async (req, res) => {
+    console.log(req.params);
+    const { week, user } = req.params;
+    const result = await Pick.calculateCorrect(week, user);
+    console.log(result);
+    res.send(result);
+  },
 };
