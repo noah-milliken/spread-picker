@@ -1,29 +1,43 @@
-import { Box, Flex, Heading, Spacer, HStack } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Flex, Heading, Spacer, HStack } from "@chakra-ui/react";
+import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-
+import Login from '../components/Login'
+import Register from '../components/Register'
 export default function RootLayout() {
-  return (
-    <Flex
-      height="100vh"
-      direction={"column"}
-      className="root-layout"
-      bg="#242424"
-      color="#F7FAFC"
-      w="100%"
-      border="solid tomato 1px"
+  const [isLogin, setIsLogin] = useState(true)
+  console.log(isLogin)
+  
+
+  return (<Grid
+    templateAreas={`
+    "header"
+    "main"
+    "footer"`}
+    gridTemplateRows={'50px 1fr 50px'}
+    gridTemplateColumns={'1fr'}
+    h='100vh'
+    
+    color='blackAlpha.700'
+    fontWeight='bold'
     >
-      <Flex>
-        <Heading>Pickit</Heading>
-        <Spacer />
-        <HStack>
-          <NavLink to="/">Home</NavLink>
-          <Spacer />
-          <NavLink to="profile">Profile</NavLink>
-        </HStack>
-      </Flex>
-      <Box>
-        <Outlet />
-      </Box>
-    </Flex>
-  );
+    <GridItem pl='2' bg='brand.300' area={'header'}>
+      <NavLink to='/'>Home</NavLink>
+      <NavLink to='profile'>Profile</NavLink>
+    </GridItem>
+    <GridItem pl='2' bg='brand.300' area={'main'}>
+    {isLogin ? (
+  <Login isLogin={isLogin} setIsLogin={setIsLogin} />
+) : (
+  <Register isLogin={isLogin} setIsLogin={setIsLogin} />
+)}
+      <Outlet/>
+    </GridItem>
+    <GridItem pl='2' bg='brand.300' area={'footer'}>
+      Footer
+    </GridItem>
+    </Grid>)
+
 }
+
+
+

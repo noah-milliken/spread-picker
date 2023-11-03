@@ -7,7 +7,7 @@ import axios from 'axios'
 const Picks = () => {
   const { week } = useParams()
   const [games, setGames] = useState([])
-
+  const correct = 1
   useEffect(()=> {
     axios.get(`http://localhost:8080/matches/${Number(week)}`)
       .then(res => {
@@ -19,16 +19,13 @@ const Picks = () => {
   },[week])
 
   return (
-    <Box>
-      <Heading>Pick the Spread</Heading>
-      <Text>Pick the winners for this week</Text>
+    <Box  mx={3}>
       <SimpleGrid
-        spacing={4}
-        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+        margin={2}
+        spacing={2}
+       columns={[1,3,4]}
       >
         {games.map((game, index) => (
-          
-          
           <Pick
             key={index}
             gameId ={game.match_id}
@@ -39,6 +36,10 @@ const Picks = () => {
           />
         ))}
       </SimpleGrid>
+      <Box width={'30%'} h={'100px'} margin={'0 auto' }>
+          <Text>You chose {correct} this week.</Text>
+
+      </Box>
     </Box>
   );
 };

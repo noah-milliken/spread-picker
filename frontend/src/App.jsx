@@ -5,6 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { ChakraProvider} from "@chakra-ui/react";
+import theme from './theme'
 // components
 import Home from "./components/Home";
 import Picks from "./components/Picks";
@@ -28,7 +29,6 @@ const router = createBrowserRouter(
         <Route path="League" element={<League />} />
         <Route path="settings" element={<Settings />} />
       </Route>
-
       <Route path="*" element={<NotFound />} />
     </Route>,
   ),
@@ -36,7 +36,7 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <ChakraProvider >
+    <ChakraProvider  theme={theme}>
       <RouterProvider router={router} />
     </ChakraProvider>
   );

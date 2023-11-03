@@ -1,6 +1,7 @@
-import { Button, Text, Card, CardBody } from "@chakra-ui/react";
+import { Button, Text, Box, CardBody, color } from "@chakra-ui/react";
 import { sendPickToDb } from '../api'
 import { useParams } from "react-router-dom";
+
 
 
 
@@ -25,8 +26,14 @@ const PickCard = ({ awayTeam, homeTeam, spread, gameId }) => {
 
   
   return (
-    <Card variant="elevated">
-      <CardBody>
+    <Box 
+      bg='brand.50'
+      borderRadius={'lg'}
+      
+      display={'flex'}
+      justifyContent={'space-around'}
+      py={'9'}
+      >
         <Button 
         variant="outline" 
         colorScheme="blue"
@@ -42,22 +49,12 @@ const PickCard = ({ awayTeam, homeTeam, spread, gameId }) => {
         onClick={()=>handleTeamSelect (homeTeam, gameId)} >
           {homeTeam}
         </Button>
-      </CardBody>
-    </Card>
+   
+      </Box>
   );
 };
 
 export default PickCard;
 
-  /* <Card variant={"filled"}>
-  <CardBody>
-    <Button colorScheme="green">{awayTeam}</Button>
-    <Box>
-      <Heading as="h5" size="md">
-        {spread}
-      </Heading>
-    </Box>
-    <Button colorScheme="teal">{homeTeam}</Button>
-  </CardBody>
-</Card>; */
+
 
