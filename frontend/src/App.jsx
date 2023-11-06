@@ -5,38 +5,33 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { ChakraProvider} from "@chakra-ui/react";
+import theme from './theme'
 // components
-import Home from "./components/Home";
-import Picks from "./components/Picks";
+import Players from "./components/Players";
 import League from "./components/League";
-import Settings from "./components/Settings";
-
+import NotFound from './components/NotFound' 
+import Picks from "./components/Picks";
 // layouts
-import RootLayout from "./layouts/RootLayout";
+import RootLayout from "./layouts/RootLayout"; 
 import { ProfileLayout } from "./layouts/ProfileLayout";
-import NotFound from "./components/NotFound";
-
-
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<Home />} />
+      <Route index element={<Players />} />
       <Route path="profile" element={<ProfileLayout />}>
-        <Route path="picks/:week" element={<Picks />} />
-        <Route path="League" element={<League />} />
-        <Route path="settings" element={<Settings />} />
+        <Route path="league" element={<League />} />
+        <Route path="picks" element={<Picks />} />
       </Route>
-
       <Route path="*" element={<NotFound />} />
-    </Route>,
+    </Route>
   ),
 );
 
 function App() {
   return (
-    <ChakraProvider >
+    <ChakraProvider  theme={theme}>
       <RouterProvider router={router} />
     </ChakraProvider>
   );
