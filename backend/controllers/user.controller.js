@@ -2,6 +2,7 @@ const User = require("../models/user.model");
 
 module.exports = {
   getAllUsers: async (req, res) => {
+    console.log("hit users endpoint");
     const result = await User.getAll();
     res.send(result);
   },

@@ -6,5 +6,6 @@ router.get("/", leaguesController.getAllLeagues);
 
 //POST ROUTES
 router.post("/", leaguesController.makeLeague);
-
+router.post("/addUser", leaguesController.addUser);
+router.post("/removeUser", leaguesController.removeUser);
 module.exports = router;

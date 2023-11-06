@@ -20,4 +20,23 @@ module.exports = {
       console.log(error);
     }
   },
+  addUser: async (req, res) => {
+    try {
+      const { league_name, user_id, league_id } = req.body;
+      const result = await League.join(league_name, user_id, league_id);
+      res.send(result);
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  },
+  removeUser: async (req, res) => {
+    try {
+      const { league_name, user_id, league_id } = req.body;
+      const result = await League.leave(league_name, user_id, league_id);
+      res.send(result);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

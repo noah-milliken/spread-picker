@@ -1,16 +1,18 @@
-import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import Pick from "./PickCard";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 
 const Picks = () => {
+  
   const { week } = useParams()
+  console.log(week)
   const [games, setGames] = useState([])
-  const correct = 1
   useEffect(()=> {
-    axios.get(`http://localhost:8080/matches/${Number(week)}`)
+    axios.get(`http://localhost:8080/users/2/weeks/9`)
       .then(res => {
+        console.log(res)
         setGames(res.data)
       })
       .catch(err => {
@@ -19,29 +21,33 @@ const Picks = () => {
   },[week])
 
   return (
-    <Box  mx={3}>
-      <SimpleGrid
-        margin={2}
-        spacing={2}
-       columns={[1,3,4]}
-      >
+    <Flex
+    p={'20px'}
+    flexWrap={'wrap'}
+    gap={3}
+    >
         {games.map((game, index) => (
+          <Flex key={index} border={'solid'}
+          flex={'1 0 200px'}
+          height={'200px'}
+          >
           <Pick
             key={index}
             gameId ={game.match_id}
             homeTeam={game.home_team}
             awayTeam={game.away_team}
             spread={game.point_spread}
-          
           />
+           </Flex>
         ))}
-      </SimpleGrid>
-      <Box width={'30%'} h={'100px'} margin={'0 auto' }>
-          <Text>You chose {correct} this week.</Text>
-
-      </Box>
-    </Box>
-  );
+    </Flex>
+  ); 
+   
+  
 };
 
 export default Picks;
+
+
+
+

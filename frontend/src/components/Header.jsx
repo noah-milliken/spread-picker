@@ -15,7 +15,7 @@ const Header = (props) => {
     justify={'space-between'}
     wrap={'wrap'}
     w={'100%'}
-    mb={8}
+    mb={4}
     p={8}
     bg={['purple.800', 'purple.800','purple.800', 'purple.800']}
     color={["white", "white", "primary.700", "primary.700"]}

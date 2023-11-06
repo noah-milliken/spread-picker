@@ -1,4 +1,4 @@
-import { Button, Text, Box, CardBody, color } from "@chakra-ui/react";
+import { Button, Text, Flex, CardBody, color } from "@chakra-ui/react";
 import { sendPickToDb } from '../api'
 import { useParams } from "react-router-dom";
 
@@ -26,13 +26,13 @@ const PickCard = ({ awayTeam, homeTeam, spread, gameId }) => {
 
   
   return (
-    <Box 
-      bg='brand.50'
-      borderRadius={'lg'}
-      
-      display={'flex'}
-      justifyContent={'space-around'}
-      py={'9'}
+    <Flex 
+    bg={'purple.900'}
+    w={'100%'}
+    h={'100%'}
+    align={'center'}
+    margin={'0 auto'}
+    justify={'space-around'}
       >
         <Button 
         variant="outline" 
@@ -50,7 +50,7 @@ const PickCard = ({ awayTeam, homeTeam, spread, gameId }) => {
           {homeTeam}
         </Button>
    
-      </Box>
+      </Flex>
   );
 };
 
