@@ -12,8 +12,9 @@ module.exports = {
     res.send(result);
   },
   getUserPicksByWeek: async (req, res) => {
-    const { week } = req.params;
-    const result = await User.getPicksByUserAndWeek(week);
+    console.log("GetUserPicksByWeek:", req.params);
+    const { userId, week } = req.params;
+    const result = await User.getPicksByUserAndWeek(userId, week);
     res.send(result);
   },
   makePick: async (req, res) => {

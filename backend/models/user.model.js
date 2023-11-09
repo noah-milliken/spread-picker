@@ -28,19 +28,24 @@ WHERE u.user_id = ?;
   return result;
 };
 //gets picks for the specified week
-exports.getPicksByUserAndWeek = async (week) => {
+exports.getPicksByUserAndWeek = async (userId, week) => {
+  console.log(userId, week);
   const [result] = await pool.query(
     `
-    SELECT * FROM matches
-    WHERE week_num = ? 
+    SELECT COALESCE(m.match_id, 0) AS match_id, m.week_num, m.date, m.away_team, m.home_team, m.point_spread, m.away_id, m.home_id, m.home_score, m.away_score, m.winning_team, p.user_pick, p.user_id, p.week_number, p.correct_pick
+    FROM matches m
+    LEFT JOIN picks p ON m.match_id = p.match_id
+    WHERE m.week_num = ?
+      AND (p.user_id = ? OR p.user_id IS NULL);
     `,
-    [week]
+    [week, userId]
   );
-
+  console.log(result);
   return result;
 };
 //sets the user pick for match by week, matchid and user_id
 exports.make = async (pick, user_id, week_number, match_id) => {
+  console.log(match_id);
   const [existingRecord] = await pool.query(
     `
   SELECT * FROM picks 

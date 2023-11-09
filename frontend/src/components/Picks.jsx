@@ -11,7 +11,7 @@ console.log(userid)
   useEffect(()=> {
     axios.get(`http://localhost:8080/users/${userid}/weeks/${week}`)
       .then(res => {
-        console.log(res)
+        console.log(res.data)
         setGames(res.data)
       })
       .catch(err => {
