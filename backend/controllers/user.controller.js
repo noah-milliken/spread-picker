@@ -18,8 +18,9 @@ module.exports = {
   },
   makePick: async (req, res) => {
     console.log(req.body);
-    const { user_pick, user_id, week_number, match_id } = req.body;
-    const result = await User.make(user_pick, user_id, week_number, match_id);
+    const { pick, user_id, week_num, match_id } = req.body;
+    console.log(pick);
+    const result = await User.make(pick, user_id, week_num, match_id);
     res.send(result);
   },
   //   evaluate: async (req, res) => {

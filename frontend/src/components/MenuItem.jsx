@@ -1,4 +1,5 @@
-import { Link, Text } from "@chakra-ui/react"
+import {  Text } from "@chakra-ui/react"
+import { NavLink } from "react-router-dom"
 
 const MenuItem = (props) => {
     const {children, isLast, to='/', ...rest} = props
@@ -9,7 +10,7 @@ const MenuItem = (props) => {
     display={"block"}
     {...rest}
     >
-        <Link to={to}>{children}</Link>
+        <NavLink to={to}>{children}</NavLink>
          </Text>
   )
 }

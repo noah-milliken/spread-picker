@@ -1,16 +1,15 @@
-import { Box, Flex, SimpleGrid, Text } from "@chakra-ui/react";
+import {Flex} from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import Pick from "./PickCard";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 
 const Picks = () => {
-  
-  const { week } = useParams()
-  console.log(week)
+const { userid, week } = useParams()
+console.log(userid)
   const [games, setGames] = useState([])
   useEffect(()=> {
-    axios.get(`http://localhost:8080/users/2/weeks/9`)
+    axios.get(`http://localhost:8080/users/${userid}/weeks/${week}`)
       .then(res => {
         console.log(res)
         setGames(res.data)
@@ -18,7 +17,7 @@ const Picks = () => {
       .catch(err => {
         console.log(err)
       })
-  },[week])
+  },[week, userid])
 
   return (
     <Flex
@@ -27,7 +26,7 @@ const Picks = () => {
     gap={3}
     >
         {games.map((game, index) => (
-          <Flex key={index} border={'solid'}
+          <Flex key={index} 
           flex={'1 0 200px'}
           height={'200px'}
           >
