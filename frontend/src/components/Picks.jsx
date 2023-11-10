@@ -6,8 +6,8 @@ import axios from 'axios'
 
 const Picks = () => {
 const { userid, week } = useParams()
-console.log(userid)
   const [games, setGames] = useState([])
+  console.log(games)
   useEffect(()=> {
     axios.get(`http://localhost:8080/users/${userid}/weeks/${week}`)
       .then(res => {
@@ -36,6 +36,7 @@ console.log(userid)
             homeTeam={game.home_team}
             awayTeam={game.away_team}
             spread={game.point_spread}
+            userPick={game.user_pick}
           />
            </Flex>
         ))}

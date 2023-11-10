@@ -22,6 +22,8 @@ exports.getUser = async (userId) => {
 FROM users u
 JOIN picks p ON u.user_id = p.user_id
 WHERE u.user_id = ?;
+
+
     `,
     [userId]
   );
@@ -32,13 +34,14 @@ exports.getPicksByUserAndWeek = async (userId, week) => {
   console.log(userId, week);
   const [result] = await pool.query(
     `
-    SELECT COALESCE(m.match_id, 0) AS match_id, m.week_num, m.date, m.away_team, m.home_team, m.point_spread, m.away_id, m.home_id, m.home_score, m.away_score, m.winning_team, p.user_pick, p.user_id, p.week_number, p.correct_pick
-    FROM matches m
-    LEFT JOIN picks p ON m.match_id = p.match_id
-    WHERE m.week_num = ?
-      AND (p.user_id = ? OR p.user_id IS NULL);
+
+
+    SELECT m.match_id , m.week_num, m.date, m.away_team, m.home_team, m.point_spread, m.away_id, m.home_id, m.home_score, m.away_score, m.winning_team, p.user_pick, p.user_id, COALESCE(p.week_number, 0) AS week_number, p.correct_pick
+FROM matches m
+LEFT JOIN picks p ON m.match_id = p.match_id AND p.week_number = ? AND (p.user_id = ? OR p.user_id IS NULL)
+WHERE m.week_num = ?;
     `,
-    [week, userId]
+    [week, userId, week]
   );
   console.log(result);
   return result;
