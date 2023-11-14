@@ -3,18 +3,15 @@ import { extendTheme } from "@chakra-ui/react";
 const theme = extendTheme({
   config: {
     initialColorMode: "dark",
-    useSystemColorMode: false,
+    useSystemColorMode: true,
   },
-  colors: {
-    light: {
-      primary: "#ff0000",
-      secondary: "#00ff00",
-    },
-    dark: {
-      primary: "#0000ff",
-      secondary: "#ffff00",
+  semanticTokens: {
+    colors: {
+      "chakra-body-bg": {
+        _light: "gray.500",
+        _dark: "gray.800",
+      },
     },
   },
 });
-
 export default theme;

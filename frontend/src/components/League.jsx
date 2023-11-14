@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function League() {
   const [leagues, setLeagues] = useState([])
-  const userId = 66
+  const userId = 1
   useEffect(() => {
     axios.get('http://localhost:8080/leagues')
     .then(res => {

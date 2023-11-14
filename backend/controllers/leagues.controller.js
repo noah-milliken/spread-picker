@@ -22,6 +22,7 @@ module.exports = {
   },
   addUser: async (req, res) => {
     try {
+      console.log(req.body);
       const { league_name, user_id, league_id } = req.body;
       const result = await League.join(league_name, user_id, league_id);
       res.send(result);

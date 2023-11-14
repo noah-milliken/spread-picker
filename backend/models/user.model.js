@@ -34,8 +34,6 @@ exports.getPicksByUserAndWeek = async (userId, week) => {
   console.log(userId, week);
   const [result] = await pool.query(
     `
-
-
     SELECT m.match_id , m.week_num, m.date, m.away_team, m.home_team, m.point_spread, m.away_id, m.home_id, m.home_score, m.away_score, m.winning_team, p.user_pick, p.user_id, COALESCE(p.week_number, 0) AS week_number, p.correct_pick
 FROM matches m
 LEFT JOIN picks p ON m.match_id = p.match_id AND p.week_number = ? AND (p.user_id = ? OR p.user_id IS NULL)
@@ -76,6 +74,12 @@ exports.make = async (pick, user_id, week_number, match_id) => {
     );
     return result;
   }
+};
+exports.getProfile = async (userId) => {
+  const [resul] = await pool.query(
+    `
+    `
+  );
 };
 // // Checks the users picks against the matches results and sets correct_pick to 0 or 1
 // exports.evaluate = async () => {

@@ -10,7 +10,7 @@ export default function RootLayout(props) {
     direction='column'
     align='center'
     maxW={{xl: '1200px'}}
-    minH={'100vh'}s
+    minH={'100vh'}
     m='0 auto'
     justify={'space-between'}
     {...props}

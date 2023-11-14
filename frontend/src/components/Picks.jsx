@@ -21,13 +21,17 @@ const { userid, week } = useParams()
 
   return (
     <Flex
+    justifyContent={'flex-start'}
     p={'20px'}
     flexWrap={'wrap'}
+    width={'auto'}
     gap={3}
+    
+  
     >
         {games.map((game, index) => (
           <Flex key={index} 
-          flex={'1 0 200px'}
+          w={'222px'}
           height={'200px'}
           >
           <Pick

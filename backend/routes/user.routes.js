@@ -7,6 +7,7 @@ const userController = require("../controllers/user.controller");
 router.get("/", userController.getAllUsers);
 router.get("/:userId", userController.getUser);
 router.get("/:userId/weeks/:week", userController.getUserPicksByWeek);
+router.get("/:userId/profile", userController.getUserProfile);
 
 router.post("/", userController.makePick);
 

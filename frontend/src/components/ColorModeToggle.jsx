@@ -1,4 +1,3 @@
-import React from 'react'
 import {MdDarkMode, MdLightMode} from 'react-icons/md'
 import { Button, Flex, useColorMode } from '@chakra-ui/react'
 const colorModeToggle = () => {

@@ -17,6 +17,12 @@ module.exports = {
     const result = await User.getPicksByUserAndWeek(userId, week);
     res.send(result);
   },
+  getUserProfile: async (req, res) => {
+    console.log("getUserProfile:", req.params);
+    const { userId } = req.params;
+    const result = await User.getProfile(userId);
+    res.send(result);
+  },
   makePick: async (req, res) => {
     console.log(req.body);
     const { pick, user_id, week_num, match_id } = req.body;

@@ -2,20 +2,23 @@ import { useEffect, useState } from "react";
 import { Button, Text, Flex} from "@chakra-ui/react";
 import { sendPickToDb } from '../api'
 import { useParams } from "react-router-dom";
+import { useColorMode } from "@chakra-ui/react";
 
 const PickCard = ({ awayTeam, homeTeam, spread, gameId, userPick }) => {
+  const {colorMode} = useColorMode()
+
   const [selectedTeam, setSelectedTeam] = useState(null)
   const {week, userid} = useParams()
   const userID = userid
-  console.log(userPick)
-  ; 
+
   useEffect(()=> {
     if(userPick === awayTeam){
       setSelectedTeam(awayTeam)
     }else if(userPick === homeTeam){
       setSelectedTeam(homeTeam)
     }
-  }, [userPick])
+
+  }, [userPick, awayTeam, homeTeam])
     
     const handleTeamSelect = async (team, gameId) => {
      try {
@@ -31,20 +34,22 @@ const PickCard = ({ awayTeam, homeTeam, spread, gameId, userPick }) => {
      } catch (err) {
       console.log(err)
      }
+
     }
 
   return (
-      <Flex 
-        border={selectedTeam ? 'gray solid 1px': 'tomato solid 1px' }
+    <Flex 
+    bg={colorMode === 'light' ? 'gray.500': 'gray.900'}
+        borderRadius={10}
+      
         w={'100%'}
-        maxW={'225px'}
         h={'100%'}
         align={'center'}
         margin={'0 auto'}
         justify={'space-around'}
       >
         <Button 
-          bg={selectedTeam === awayTeam ? 'tomato': 'teal'}
+          colorScheme="teal"
           variant={selectedTeam === awayTeam ? 'solid': 'outline'} 
           onClick={()=>handleTeamSelect (awayTeam, gameId)} 
         >
@@ -54,7 +59,7 @@ const PickCard = ({ awayTeam, homeTeam, spread, gameId, userPick }) => {
         <Text>{spread}</Text>
 
         <Button 
-        bg={selectedTeam === homeTeam ? 'tomato': 'teal'}
+          colorScheme="purple"
           variant={selectedTeam === homeTeam ? 'solid': 'outline'}
           onClick={()=>handleTeamSelect (homeTeam, gameId)} 
         >
