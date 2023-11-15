@@ -81,49 +81,45 @@ exports.getProfile = async (userId) => {
     `
   );
 };
-// // Checks the users picks against the matches results and sets correct_pick to 0 or 1
-// exports.evaluate = async () => {
-//   console.log("working evaluate");
-//   const [result] = await pool.query(`
-//   SELECT
-//     p.user_pick,
-//     p.user_id,
-//     p.week_number,
-//     p.correct_pick,
-//     m.winning_team,
-//     m.match_id
-//   FROM picks p
-//   JOIN matches m
-//     ON p.match_id = m.match_id
-//   `);
-//   result.forEach((pick) => {
-//     pick.correct_pick = pick.user_pick === pick.winning_team ? 1 : 0;
-//   });
-//   console.log(result);
-//   const updatePicks = await result.map((pick) => {
-//     pool.query(
-//       `
-//       UPDATE picks
-//       SET correct_pick = ?
-//       WHERE user_id = ? and match_id =?
-//     `,
-//       [pick.correct_pick, pick.user_id, pick.match_id]
-//     );
-//   });
-//   await Promise.all(updatePicks);
-// };
+// Checks the users picks against the matches results and sets correct_pick to 0 or 1
+exports.evaluate = async () => {
+  console.log("working evaluate");
+  const [result] = await pool.query(`
+  SELECT
+    p.user_pick,
+    p.user_id,
+    p.week_number,
+    p.correct_pick,
+    m.winning_team,
+    m.match_id
+  FROM picks p
+  JOIN matches m
+    ON p.match_id = m.match_id
+  `);
+  result.forEach((pick) => {
+    pick.correct_pick = pick.user_pick === pick.winning_team ? 1 : 0;
+  });
+  console.log(result);
+  const updatePicks = await result.map((pick) => {
+    pool.query(
+      `
+      UPDATE picks
+      SET correct_pick = ?
+      WHERE user_id = ? and match_id =?
+    `,
+      [pick.correct_pick, pick.user_id, pick.match_id]
+    );
+  });
+  await Promise.all(updatePicks);
+};
 
-// exports.calculateCorrect = async (user_id, week) => {
-//   const [result] = await pool.query(
-//     `
-//   SELECT * FROM picks
-//   WHERE user_id = ? and week_number = ?
-//   `,
-//     [user_id, week]
-//   );
-//   const calculatedTotal = result.reduce((acc, pick) => {
-//     return acc + pick.correct_pick;
-//   }, 0);
-//   console.log(calculatedTotal);
-//   return { calculatedTotal: calculatedTotal };
-// };
+exports.calculateCorrect = async (user_id, week) => {
+  const [result] = await pool.query(
+    `
+    SELECT sum(correct_pick) as total_correct from picks
+    WHERE user_id = ? and week_number = ?;
+  `,
+    [user_id, week]
+  );
+  return result;
+};

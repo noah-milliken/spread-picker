@@ -7,7 +7,7 @@ module.exports = {
       console.log("Got All Leagues");
       res.send(result);
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   },
   makeLeague: async (req, res) => {
@@ -16,9 +16,7 @@ module.exports = {
       const { league_name, league_owner } = req.body;
       const result = await League.make(league_name, league_owner);
       res.send(result);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   },
   addUser: async (req, res) => {
     try {
@@ -27,8 +25,7 @@ module.exports = {
       const result = await League.join(league_name, user_id, league_id);
       res.send(result);
     } catch (error) {
-      console.log(error);
-      res.send(error);
+      next(error);
     }
   },
   removeUser: async (req, res) => {
@@ -37,7 +34,7 @@ module.exports = {
       const result = await League.leave(league_name, user_id, league_id);
       res.send(result);
     } catch (error) {
-      console.log(error);
+      next(error);
     }
   },
 };

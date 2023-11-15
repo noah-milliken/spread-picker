@@ -5,7 +5,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 const PORT = process.env.PORT || 8080;
-
+const errorHandler = require("./errorHandler");
 const app = express();
 //routes
 const matchesRoutes = require("./routes/matches.routes");
@@ -19,6 +19,8 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use("/matches", matchesRoutes);
 app.use("/users", userRoutes);
 app.use("/leagues", leaguesRoutes);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server Listening on Port: ${PORT}`);
