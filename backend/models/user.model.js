@@ -123,3 +123,16 @@ exports.calculateCorrect = async (user_id, week) => {
   );
   return result;
 };
+
+exports.getCorrect = async (user_id) => {
+  console.log("Get Correct");
+  const [result] = await pool.query(
+    `
+  SELECT sum(correct_pick) as total_correct from picks
+  WHERE user_id = ? 
+`,
+    [user_id]
+  );
+  console.log(result);
+  return result;
+};
