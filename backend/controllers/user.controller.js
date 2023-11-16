@@ -54,7 +54,7 @@ module.exports = {
     try {
       const { userId } = req.params;
       console.log(userId);
-      const result = await User.getCorrect(user - Id);
+      const result = await User.getCorrect(userId);
       console.log(result);
       res.send(result);
     } catch (error) {
