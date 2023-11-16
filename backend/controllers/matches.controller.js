@@ -7,7 +7,7 @@ module.exports = {
       res.send(weeks);
     } catch (error) {
       console.error("Error in matches.weeks", error.message);
-      throw error;
+      next(error);
     }
   },
 
@@ -18,7 +18,7 @@ module.exports = {
       res.send(week);
     } catch (error) {
       console.error("Error in matches.weekNum", error.message);
-      throw error;
+      next(error);
     }
   },
   calculateSpreadResult: async (req, res) => {
@@ -32,5 +32,3 @@ module.exports = {
     }
   },
 };
-
-Match.calculateSpreadResult(10);

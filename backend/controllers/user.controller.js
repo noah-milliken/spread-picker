@@ -1,7 +1,7 @@
 const User = require("../models/user.model");
 
 module.exports = {
-  getAllUsers: async (req, res) => {
+  getAllUsers: async (req, res, next) => {
     console.log("hit users endpoint");
     try {
       const result = await User.getAll();
@@ -10,7 +10,7 @@ module.exports = {
       next(error);
     }
   },
-  getUser: async (req, res) => {
+  getUser: async (req, res, next) => {
     console.log("Get User", req.params.userId);
     try {
       const user = req.params.userId;
@@ -20,7 +20,7 @@ module.exports = {
       next(error);
     }
   },
-  getUserPicksByWeek: async (req, res) => {
+  getUserPicksByWeek: async (req, res, next) => {
     console.log("GetUserPicksByWeek:", req.params);
     try {
       const { userId, week } = req.params;
@@ -30,7 +30,7 @@ module.exports = {
       next(error);
     }
   },
-  getUserProfile: async (req, res) => {
+  getUserProfile: async (req, res, next) => {
     console.log("getUserProfile:", req.params);
     try {
       const { userId } = req.params;
@@ -40,7 +40,7 @@ module.exports = {
       next(error);
     }
   },
-  makePick: async (req, res) => {
+  makePick: async (req, res, next) => {
     console.log(req.body);
     try {
       const { pick, user_id, week_num, match_id } = req.body;
@@ -50,16 +50,15 @@ module.exports = {
       next(error);
     }
   },
-  //   evaluate: async (req, res) => {
-  //     console.log("evaluate");
-  //     const result = await Pick.evaluate();
-  //     res.send(result);
-  //   },
-
-  //   calculateCorrect: async (req, res) => {
-  //     const { week, user } = req.params;
-  //     const result = await Pick.calculateCorrect(week, user);
-  //     console.log(result);
-  //     res.send(result);
-  //   },
+  getCorrect: async (req, res, next) => {
+    try {
+      const { userId } = req.params;
+      console.log(userId);
+      const result = await User.getCorrect(user - Id);
+      console.log(result);
+      res.send(result);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
