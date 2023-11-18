@@ -51,7 +51,7 @@ const PickCard = ({ awayTeam, homeTeam, spread, gameId, userPick }) => {
       >
 
         <Button size={['lg','md']} 
-          colorScheme="blue"
+          colorScheme="green"
           variant={selectedTeam === awayTeam ? 'solid': 'outline'} 
           onClick={()=>handleTeamSelect (awayTeam, gameId)} 
         >
@@ -62,7 +62,7 @@ const PickCard = ({ awayTeam, homeTeam, spread, gameId, userPick }) => {
 
         <Button 
         size={['lg','md']} 
-          colorScheme="blue"
+          colorScheme="green"
           variant={selectedTeam === homeTeam ? 'solid': 'outline'}
           onClick={()=>handleTeamSelect (homeTeam, gameId)} 
         >
