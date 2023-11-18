@@ -5,10 +5,14 @@ const theme = extendTheme({
     initialColorMode: "dark",
     useSystemColorMode: true,
   },
+  colors: {
+    brand: "#e84c2c",
+    accent: "#e84c2c",
+  },
   semanticTokens: {
     colors: {
       "chakra-body-bg": {
-        _light: "gray.500",
+        _light: "#F9F6EE",
         _dark: "gray.800",
       },
     },

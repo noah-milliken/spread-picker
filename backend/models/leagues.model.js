@@ -34,7 +34,7 @@ exports.make = async (league_name, league_owner) => {
     throw error;
   }
 };
-
+// TODO: return error if user has already joined league.
 exports.join = async (league_name, user_id, league_id) => {
   try {
     const member = await pool.query(
@@ -65,6 +65,25 @@ exports.leave = async (league_name, user_id, league_id) => {
     return member;
   } catch (error) {
     console.error("Error in leave leagues.leave:", error.message);
+    throw error;
+  }
+};
+
+exports.getJoinedByUser = async (user_id) => {
+  try {
+    const [memberships] = await pool.query(
+      `
+      SELECT  l.league_id, l.league_name, lu.user_id
+      FROM leagues l
+      JOIN league_users lu ON l.league_id = lu.league_id 
+      WHERE lu.user_id = ?;
+      `,
+      [user_id]
+    );
+    console.log(memberships);
+    return memberships;
+  } catch (error) {
+    console.error("Error in leagues.getJoinedByUser:", error.message);
     throw error;
   }
 };

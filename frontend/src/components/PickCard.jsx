@@ -39,17 +39,19 @@ const PickCard = ({ awayTeam, homeTeam, spread, gameId, userPick }) => {
 
   return (
     <Flex 
-    bg={colorMode === 'light' ? 'gray.500': 'gray.900'}
         borderRadius={10}
-      
+        borderColor={"gray.500"}
+        borderStyle={"solid"}
+        borderWidth={2}
         w={'100%'}
         h={'100%'}
         align={'center'}
         margin={'0 auto'}
         justify={'space-around'}
       >
-        <Button 
-          colorScheme="teal"
+
+        <Button size={['lg','md']} 
+          colorScheme="blue"
           variant={selectedTeam === awayTeam ? 'solid': 'outline'} 
           onClick={()=>handleTeamSelect (awayTeam, gameId)} 
         >
@@ -59,7 +61,8 @@ const PickCard = ({ awayTeam, homeTeam, spread, gameId, userPick }) => {
         <Text>{spread}</Text>
 
         <Button 
-          colorScheme="purple"
+        size={['lg','md']} 
+          colorScheme="blue"
           variant={selectedTeam === homeTeam ? 'solid': 'outline'}
           onClick={()=>handleTeamSelect (homeTeam, gameId)} 
         >

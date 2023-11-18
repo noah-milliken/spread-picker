@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import Pick from "./PickCard";
 import { useEffect, useState } from "react";
 import axios from 'axios'
-
 const Picks = () => {
 const { userid, week } = useParams()
   const [games, setGames] = useState([])
@@ -21,18 +20,15 @@ const { userid, week } = useParams()
 
   return (
     <Flex
-    justifyContent={'flex-start'}
-    p={'20px'}
+    justifyContent={'center'}
     flexWrap={'wrap'}
-    width={'auto'}
     gap={3}
-    
-  
     >
         {games.map((game, index) => (
           <Flex key={index} 
-          w={'222px'}
-          height={'200px'}
+          w={['100%','222px']}
+          minW={'250px'}
+          height={['150px','200px']}
           >
           <Pick
             key={index}
@@ -46,8 +42,6 @@ const { userid, week } = useParams()
         ))}
     </Flex>
   ); 
-   
-  
 };
 
 export default Picks;
