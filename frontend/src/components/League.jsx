@@ -1,23 +1,28 @@
 import { Flex, Button, Text } from "@chakra-ui/react";
 import axios from "axios";
-import { color } from "framer-motion";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
 export default function League() {
   const [leagues, setLeagues] = useState([])
-  const userId = 1
-  useEffect(() => {
-    axios.get('http://localhost:8080/leagues')
-    .then(res => {
-      console.log(res.data)
-      setLeagues(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-  }, [])
+  const {userId} = useParams()
+  useEffect (() =>  {
+    const fetchData = async () => {   
+    try {
+      const response = await axios.get('http://localhost:8080/leagues')
+      console.log(response)
+      setLeagues(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  };
+      fetchData()
+    }, [])
+
 
   const handleJoinLeague = (league_name, league_id, user) => {
+    //guard for empty data in joining league. 
     const userData = {
       league_name:league_name,
       league_id:league_id,
@@ -28,6 +33,7 @@ export default function League() {
     })
   }
   const handleLeaveLeague = (league_name, league_id, user) => {
+     //guard for empty data in leaving league.
     const userData = {
       league_name:league_name,
       league_id:league_id,
@@ -41,7 +47,6 @@ export default function League() {
 
   return( 
   <Flex
-  
     margin={'0 auto'}
     height={'100%'}
     maxW={'400px'}

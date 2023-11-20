@@ -6,18 +6,18 @@ import axios from 'axios'
 const Picks = () => {
 const { userid, week } = useParams()
   const [games, setGames] = useState([])
-  console.log(games)
+  
   useEffect(()=> {
-    axios.get(`http://localhost:8080/users/${userid}/weeks/${week}`)
-      .then(res => {
-        console.log(res.data)
-        setGames(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  },[week, userid])
-
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/users/${userid}/weeks/${week}`)
+        setGames(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchData()
+   }, [week])
   return (
     <Flex
     justifyContent={'center'}

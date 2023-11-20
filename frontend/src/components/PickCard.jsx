@@ -4,8 +4,13 @@ import { sendPickToDb } from '../api'
 import { useParams } from "react-router-dom";
 import { useColorMode } from "@chakra-ui/react";
 
-const PickCard = ({ awayTeam, homeTeam, spread, gameId, userPick }) => {
-  const {colorMode} = useColorMode()
+const PickCard = ({ 
+  awayTeam, 
+  homeTeam, 
+  spread, 
+  gameId, 
+  userPick }) => {
+ 
 
   const [selectedTeam, setSelectedTeam] = useState(null)
   const {week, userid} = useParams()
