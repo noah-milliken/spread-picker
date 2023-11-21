@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import {Flex} from '@chakra-ui/react'
 import axios from 'axios'
 import { useParams } from "react-router-dom";
+import Standings from "./Standings";
 
 const Profile = () => {
   const {userid} = useParams()
@@ -17,8 +19,10 @@ const Profile = () => {
     fetchData()
   },[])
 
-  console.log(userid)
-  return <div>Profile</div>;
+  
+  return <Flex>
+      <Standings userid={userid} />
+  </Flex>
 };
 
 export default Profile

@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import Pick from "./PickCard";
 import { useEffect, useState } from "react";
 import axios from 'axios'
-const Picks = () => {
+
+
+const Picks = ({}) => {
 const { userid, week } = useParams()
   const [games, setGames] = useState([])
   
@@ -24,6 +26,7 @@ const { userid, week } = useParams()
     flexWrap={'wrap'}
     gap={3}
     >
+       
         {games.map((game, index) => (
           <Flex key={index} 
           w={['100%','222px']}
@@ -38,9 +41,12 @@ const { userid, week } = useParams()
             spread={game.point_spread}
             userPick={game.user_pick}
           />
+          
            </Flex>
         ))}
+       
     </Flex>
+
   ); 
 };
 

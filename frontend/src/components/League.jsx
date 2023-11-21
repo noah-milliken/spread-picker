@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 
 export default function League() {
   const [leagues, setLeagues] = useState([])
-  const {userId} = useParams()
+  const {userid} = useParams()
+  console.log(userid)
   useEffect (() =>  {
     const fetchData = async () => {   
     try {
@@ -23,11 +24,13 @@ export default function League() {
 
   const handleJoinLeague = (league_name, league_id, user) => {
     //guard for empty data in joining league. 
+    console.log(user)
     const userData = {
       league_name:league_name,
       league_id:league_id,
       user_id: user
     }
+    console.log(userData)
     axios.post('http://localhost:8080/leagues/addUser', userData).then((res) => {
       console.log(res.status, res.data)
     })
@@ -79,8 +82,9 @@ export default function League() {
         gap={3}
         justifyContent={'space-between'}
         >
-        <Button size={['sm', 'md']}  onClick={()=> handleJoinLeague(league.league_name, league.league_id, userId)} colorScheme="blue">Join</Button>
-        <Button size={['sm', 'md']} variant={'outline'}  onClick={()=> handleLeaveLeague(league.league_name, league.league_id, userId)} colorScheme="red">X</Button>
+        <Button size={['sm', 'md']}  onClick={()=> handleJoinLeague(league.league_name, league.league_id, userid)} colorScheme="blue">Join</Button>
+
+        <Button size={['sm', 'md']} variant={'outline'}  onClick={()=> handleLeaveLeague(league.league_name, league.league_id, userid)} colorScheme="red">X</Button>
         </Flex>
         
       </Flex>

@@ -16,11 +16,14 @@ module.exports = {
       const { league_name, league_owner } = req.body;
       const result = await League.make(league_name, league_owner);
       res.send(result);
-    } catch (error) {}
+    } catch (error) {
+      next(error);
+    }
   },
   addUser: async (req, res, next) => {
     try {
       console.log(req.body);
+      console.log("addUser");
       const { league_name, user_id, league_id } = req.body;
       const result = await League.join(league_name, user_id, league_id);
       res.send(result);

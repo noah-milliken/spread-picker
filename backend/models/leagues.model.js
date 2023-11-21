@@ -36,6 +36,7 @@ exports.make = async (league_name, league_owner) => {
 };
 // TODO: return error if user has already joined league.
 exports.join = async (league_name, user_id, league_id) => {
+  console.log("user", user_id);
   try {
     const member = await pool.query(
       `
