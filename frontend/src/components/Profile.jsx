@@ -20,9 +20,9 @@ const Profile = () => {
   },[])
 
   
-  return <Flex>
+  return (<Flex>
       <Standings userid={userid} />
-  </Flex>
+  </Flex>)
 };
 
 export default Profile
