@@ -3,6 +3,7 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import StandingsTable from './StandingsTable'
+// eslint-disable-next-line react/prop-types
 const Standings = ({userid}) => {
 
   const [data, setData] = useState([])

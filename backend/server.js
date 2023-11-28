@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const cors = require("cors");
+const nfl = require("nfl-stats");
 
 const dotenv = require("dotenv");
 dotenv.config();

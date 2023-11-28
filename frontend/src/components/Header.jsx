@@ -1,10 +1,10 @@
 import { MdMenu, MdClose} from 'react-icons/md'
 import { useState } from 'react'
-import { Flex, Box, Text, Button, useColorMode } from "@chakra-ui/react"
+import { Flex, Box } from "@chakra-ui/react"
 import MenuItem from "./MenuItem"
 import { useParams } from 'react-router-dom'
+import { PiFootball } from "react-icons/pi";
 import ColorModeToggle from './ColorModeToggle'
-
 const Header = (props) => {
     const [show,setShow] = useState(false)
     const toggleMenu = () => setShow(!show)
@@ -23,7 +23,7 @@ const Header = (props) => {
     {...props}
     >
         <Flex>
-            <Text>Pick-It</Text>
+        <PiFootball size={50} />
         </Flex>
         
         <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
