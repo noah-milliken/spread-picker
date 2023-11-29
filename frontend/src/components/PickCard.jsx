@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import { Button, Text, Flex} from "@chakra-ui/react";
+import { Button, Text, Flex, Skeleton} from "@chakra-ui/react";
 import { sendPickToDb } from '../api'
 import { useParams } from "react-router-dom";
-import { useColorMode } from "@chakra-ui/react";
+
 
 const PickCard = ({ 
   awayTeam, 
   homeTeam, 
   spread, 
   gameId, 
-  userPick }) => {
+  userPick,
+  error, 
+}) => {
  
 
   const [selectedTeam, setSelectedTeam] = useState(null)
@@ -64,7 +66,7 @@ const PickCard = ({
         </Button>
 
         <Text>{spread}</Text>
-
+        <Skeleton>
         <Button 
         size={['lg','md']} 
           colorScheme="green"
@@ -73,6 +75,8 @@ const PickCard = ({
         >
           {homeTeam}
         </Button>
+        </Skeleton>
+       
       </Flex>
   );
 };
