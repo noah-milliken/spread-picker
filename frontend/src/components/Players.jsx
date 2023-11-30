@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Home = () => {
+const Home = () => { 
 const [users, setUsers] = useState([])
 
 useEffect(() => {
@@ -31,6 +31,7 @@ useEffect(() => {
       maxW={'50%'}
       didplay={['none', 'flex']}
       >
+   
       
       </Flex>
     

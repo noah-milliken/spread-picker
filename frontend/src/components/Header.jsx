@@ -5,6 +5,8 @@ import MenuItem from "./MenuItem"
 import { useParams } from 'react-router-dom'
 import { PiFootball } from "react-icons/pi";
 import ColorModeToggle from './ColorModeToggle'
+import LoginButton from './LoginButton'
+import LogoutButton from './LogOutButton'
 const Header = (props) => {
     const [show,setShow] = useState(false)
     const toggleMenu = () => setShow(!show)
@@ -43,6 +45,8 @@ const Header = (props) => {
             <MenuItem to={`/profile/${userid}`}>Home</MenuItem>
             <MenuItem to={`/profile/${userid}/league`}>Leagues</MenuItem>
             <MenuItem to={`/profile/${userid}/picks/${week|| 10}`}>Picks </MenuItem>
+            <LoginButton />
+            <LogoutButton />
             <ColorModeToggle />
         </Flex>
         
