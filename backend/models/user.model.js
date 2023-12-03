@@ -1,11 +1,16 @@
+const AppError = require("../errors/AppError");
 const pool = require("./db");
 
 // Get all users
 exports.getAll = async () => {
-  const [result] = await pool.query(`
-  SELECT * FROM users
-    `);
-  return result;
+  try {
+    const [result] = await pool.query(`
+    SELECT * FROM users
+      `);
+    return result;
+  } catch (error) {
+    throw new AppError("Error fetching all users:", 500);
+  }
 };
 // Get user by ID
 exports.getUser = async (userId) => {
@@ -34,10 +39,10 @@ exports.getPicksByUserAndWeek = async (userId, week) => {
   console.log(userId, week);
   const [result] = await pool.query(
     `
-    SELECT m.match_id , m.week_num, m.date, m.away_team, m.home_team, m.point_spread, m.away_id, m.home_id, m.home_score, m.away_score, m.winning_team, p.user_pick, p.user_id, COALESCE(p.week_number, 0) AS week_number, p.correct_pick
-FROM matches m
-LEFT JOIN picks p ON m.match_id = p.match_id AND p.week_number = ? AND (p.user_id = ? OR p.user_id IS NULL)
-WHERE m.week_num = ?;
+        SELECT m.match_id , m.week_num, m.date, m.away_team, m.home_team, m.point_spread, m.away_id, m.home_id, m.home_score, m.away_score, m.winning_team, p.user_pick, p.user_id, COALESCE(p.week_number, 0) AS week_number, p.correct_pick
+    FROM matches m
+    LEFT JOIN picks p ON m.match_id = p.match_id AND p.week_number = ? AND (p.user_id = ? OR p.user_id IS NULL)
+    WHERE m.week_num = ?;
     `,
     [week, userId, week]
   );

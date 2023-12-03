@@ -1,5 +1,5 @@
 const League = require("../models/leagues.model");
-
+const AppError = require("../errors/AppError");
 module.exports = {
   getAllLeagues: async (req, res, next) => {
     try {
@@ -14,6 +14,11 @@ module.exports = {
     console.log(req.body);
     try {
       const { league_name, league_owner } = req.body;
+      //Check If league Name is taken in the database.
+      const leagueExists = await League.exists(league_name);
+      if (leagueExists) {
+        throw new AppError("This league Name is taken", 400);
+      }
       const result = await League.make(league_name, league_owner);
       res.send(result);
     } catch (error) {

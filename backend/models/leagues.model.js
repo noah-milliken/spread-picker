@@ -88,3 +88,18 @@ exports.getJoinedByUser = async (user_id) => {
     throw error;
   }
 };
+exports.exists = async (league_name) => {
+  try {
+    const [leagues] = await pool.query(
+      `
+        SELECT * From leagues
+        Where league_name = ? 
+      `,
+      [league_name]
+    );
+    return leagues.length > 0;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
