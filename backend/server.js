@@ -1,11 +1,12 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const cors = require("cors");
+const errorHandler = require("./errors/errorHandler");
 
 const dotenv = require("dotenv");
 dotenv.config();
 const PORT = process.env.PORT || 8080;
-const errorHandler = require("./errorHandler");
+
 const app = express();
 //routes
 const matchesRoutes = require("./routes/matches.routes");
