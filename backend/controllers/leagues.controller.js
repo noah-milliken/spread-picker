@@ -1,5 +1,5 @@
 const League = require("../models/leagues.model");
-const AppError = require("../errors/AppError");
+const BadRequest = require("../errors/Errors");
 module.exports = {
   getAllLeagues: async (req, res, next) => {
     try {
@@ -17,7 +17,7 @@ module.exports = {
       //Check If league Name is taken in the database.
       const leagueExists = await League.exists(league_name);
       if (leagueExists) {
-        throw new AppError("This league Name is taken", 400);
+        throw new BadRequest("This league already exists");
       }
       const result = await League.make(league_name, league_owner);
       res.send(result);
@@ -27,9 +27,12 @@ module.exports = {
   },
   addUser: async (req, res, next) => {
     try {
-      console.log(req.body);
-      console.log("addUser");
       const { league_name, user_id, league_id } = req.body;
+      const userInLeague = await League.hasUser(league_id, user_id);
+      console.log(userInLeague);
+      if (userInLeague) {
+        throw new BadRequest("This user is already a memeber of this league");
+      }
       const result = await League.join(league_name, user_id, league_id);
       res.send(result);
     } catch (error) {

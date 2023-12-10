@@ -103,3 +103,21 @@ exports.exists = async (league_name) => {
     throw error;
   }
 };
+
+exports.hasUser = async (league_id, user_id) => {
+  console.log(user_id);
+  try {
+    const [users] = await pool.query(
+      `
+      SELECT * from league_users
+      WHERE league_id = ? and user_id = ?
+      `,
+      [league_id, user_id]
+    );
+    console.log(users);
+    return users.length > 0;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
