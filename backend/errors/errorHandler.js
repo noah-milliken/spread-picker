@@ -1,14 +1,21 @@
-const AppError = require("./AppError");
+const { BadRequest, DatabaseError } = require("./Errors");
 
 const errorHandler = (err, req, res, next) => {
-  const status = err.statusCode || 500;
+  console.log(`Error: ${err.message}`);
+  const status = err.status || 500;
   const message = err.message || "an unknown error occured";
-  if (err instanceof AppError) {
+  if (err instanceof BadRequest) {
     return res.status(status).json({
       success: false,
       status,
       message,
-      stack: process.env.NODE_ENV !== "development" ? {} : err.stack,
+    });
+  }
+  if (err instanceof DatabaseError) {
+    return res.status(status).json({
+      success: false,
+      status,
+      message,
     });
   }
   next(err);

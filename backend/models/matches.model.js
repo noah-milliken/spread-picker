@@ -1,10 +1,12 @@
 const pool = require("./db");
 
 exports.getWeeks = async () => {
-  const [weeks] = await pool.query(`
+  try {
+    const [weeks] = await pool.query(`
     SELECT * FROM matches
   `);
-  return weeks;
+    return weeks;
+  } catch (error) {}
 };
 
 exports.getWeekByNum = async (weekNum) => {
@@ -15,7 +17,6 @@ exports.getWeekByNum = async (weekNum) => {
         `,
     [weekNum]
   );
-  //console.log(week);
   return week;
 };
 

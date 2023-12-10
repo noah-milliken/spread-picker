@@ -1,4 +1,4 @@
-const AppError = require("../errors/AppError");
+const AppError = require("../errors/Errors");
 const pool = require("./db");
 
 // Get all users
@@ -33,6 +33,15 @@ WHERE u.user_id = ?;
     [userId]
   );
   return result;
+};
+exports.hasUser = async (userId) => {
+  const [result] = await pool.query(
+    `SELECT * FROM users
+    WHERE user_id = ?
+    `,
+    [userId]
+  );
+  return result.length > 0;
 };
 //gets picks for the specified week
 exports.getPicksByUserAndWeek = async (userId, week) => {
@@ -81,7 +90,7 @@ exports.make = async (pick, user_id, week_number, match_id) => {
   }
 };
 exports.getProfile = async (userId) => {
-  const [resul] = await pool.query(
+  const [result] = await pool.query(
     `
     `
   );

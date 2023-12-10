@@ -1,3 +1,4 @@
+const { BadRequest, DatabaseError } = require("../errors/Errors");
 const User = require("../models/user.model");
 
 module.exports = {
@@ -7,6 +8,9 @@ module.exports = {
       const result = await User.getAll();
       res.send(result);
     } catch (error) {
+      if (error.code) {
+        throw new DatabaseError(error.message, error.code);
+      }
       next(error);
     }
   },
@@ -14,9 +18,16 @@ module.exports = {
     console.log("Get User", req.params.userId);
     try {
       const user = req.params.userId;
+      const isUser = await User.getUser(user);
+      if (!isUser) {
+        throw new DatabaseError(`The user ${userId} does not exist.`);
+      }
       const result = await User.getUser(user);
       res.send(result);
     } catch (error) {
+      if (error.code) {
+        throw new DatabaseError(error.message, error.code);
+      }
       next(error);
     }
   },
@@ -37,6 +48,9 @@ module.exports = {
       const result = await User.getProfile(userId);
       res.send(result);
     } catch (error) {
+      if (error.code) {
+        throw new DatabaseError(error.message, error.code);
+      }
       next(error);
     }
   },
@@ -44,18 +58,22 @@ module.exports = {
     console.log(req.body);
     try {
       const { pick, user_id, week_num, match_id } = req.body;
+      if (!pick || !user_id || !week_num || !match_id) {
+        throw new BadRequest("Missing requierd info to make pick");
+      }
       const result = await User.make(pick, user_id, week_num, match_id);
       res.send(result);
     } catch (error) {
+      if (error.code) {
+        throw new DatabaseError(error.message, error.code);
+      }
       next(error);
     }
   },
   getCorrect: async (req, res, next) => {
     try {
       const { userId } = req.params;
-      console.log(userId);
       const result = await User.getCorrect(userId);
-      console.log(result);
       res.send(result);
     } catch (error) {
       next(error);
