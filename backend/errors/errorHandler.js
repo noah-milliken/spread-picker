@@ -18,7 +18,7 @@ const errorHandler = (err, req, res, next) => {
       message,
     });
   }
-  next(err);
+  //generic 500 error res.status()
 };
 
 module.exports = errorHandler;

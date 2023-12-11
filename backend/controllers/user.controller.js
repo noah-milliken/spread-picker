@@ -20,7 +20,7 @@ module.exports = {
       const user = req.params.userId;
       const isUser = await User.getUser(user);
       if (!isUser) {
-        throw new DatabaseError(`The user ${userId} does not exist.`);
+        throw new BadRequest(`The user ${userId} does not exist.`);
       }
       const result = await User.getUser(user);
       res.send(result);
@@ -48,10 +48,11 @@ module.exports = {
       const result = await User.getProfile(userId);
       res.send(result);
     } catch (error) {
+      //My sql returns .code this is how I check for database errors.
       if (error.code) {
-        throw new DatabaseError(error.message, error.code);
+        return next(new DatabaseError(error.message, error.code));
       }
-      next(error);
+      return next(error);
     }
   },
   makePick: async (req, res, next) => {
