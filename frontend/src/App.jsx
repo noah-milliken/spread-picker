@@ -9,7 +9,8 @@ import { ChakraProvider} from "@chakra-ui/react";
 import theme from './theme'
 console.log(theme)
 // components
-import Players from "./components/Players";
+import Landing from "./components/Landing";
+// import Players from "./components/Players";
 import Profile from "./components/Profile";
 import League from "./components/League";
 import NotFound from './components/NotFound' 
@@ -22,7 +23,8 @@ import { ProfileLayout } from "./layouts/ProfileLayout";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index element={ <Players />} />
+      <Route  index element={<Landing/>}/>
+      {/* <Route index element={ <Players />} /> */}
       <Route path="profile/:userid" element={<ProfileLayout />}>
         <Route index element={<Profile/>} />
         <Route path="league" element={<League />} />
