@@ -91,6 +91,7 @@ exports.make = async (pick, user_id, week_number, match_id) => {
 };
 exports.getProfile = async (userId) => {
   const [result] = await pool.query(
+    //errors for databasae can go here.
     `
     `
   );
