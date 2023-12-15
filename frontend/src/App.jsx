@@ -9,7 +9,8 @@ import { ChakraProvider} from "@chakra-ui/react";
 import theme from './theme'
 console.log(theme)
 // components
-import Players from "./components/Players";
+import Landing from "./components/Landing";
+// import Players from "./components/Players";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
 import League from "./components/League";
