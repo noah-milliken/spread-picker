@@ -8,8 +8,6 @@ import { ColorModeScript} from "@chakra-ui/react";
 import { ChakraProvider} from "@chakra-ui/react";
 import theme from './theme'
 console.log(theme)
-// components
-import Landing from "./components/Landing";
 // import Players from "./components/Players";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
@@ -21,10 +19,12 @@ import RootLayout from "./layouts/RootLayout";
 import { ProfileLayout } from "./layouts/ProfileLayout";
 import Callbacks from "./components/Callbacks";
 
+import Players from "./components/Players"; // Import the 'Players' component
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index element={ <Players />} />
+      <Route index element={<Players />} /> {/* Use the imported 'Players' component */}
       <Route path="login" element={<Login />} />
       <Route path="callback" element={<Callbacks />} />
       <Route path="profile/:userid" element={<ProfileLayout />}>
