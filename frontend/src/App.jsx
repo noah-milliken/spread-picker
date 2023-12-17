@@ -18,13 +18,14 @@ import Picks from "./components/Picks";
 import RootLayout from "./layouts/RootLayout"; 
 import { ProfileLayout } from "./layouts/ProfileLayout";
 import Callbacks from "./components/Callbacks";
-
-import Players from "./components/Players"; // Import the 'Players' component
+import AuthProviderLayout from "./utils/AuthProviderLayout";
+import Players from "./components/Players"; 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
+    <Route element={<AuthProviderLayout/>}>
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<Players />} /> {/* Use the imported 'Players' component */}
+      <Route index element={<Players />} />
       <Route path="login" element={<Login />} />
       <Route path="callback" element={<Callbacks />} />
       <Route path="profile/:userid" element={<ProfileLayout />}>
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
         <Route path="picks/:week" element={<Picks />} />
       </Route>
       <Route path="*" element={<NotFound />} />
+    </Route>
     </Route>
   ),
 );
