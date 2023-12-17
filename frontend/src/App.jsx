@@ -10,7 +10,6 @@ import theme from './theme'
 console.log(theme)
 // import Players from "./components/Players";
 import Profile from "./components/Profile";
-import NavButtons from "./components/NavButtons";
 import League from "./components/League";
 import NotFound from './components/NotFound' 
 import Picks from "./components/Picks";
