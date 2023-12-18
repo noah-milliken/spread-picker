@@ -17,8 +17,13 @@ const errorHandler = (err, req, res, next) => {
       status,
       message,
     });
+  } else {
+    return res.status(status).json({
+      success: false,
+      status,
+      message,
+    });
   }
-  //generic 500 error res.status()
 };
 
 module.exports = errorHandler;
