@@ -4,11 +4,7 @@ export const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
   const handleLogin = async () => {
-    await loginWithRedirect({
-      appState: {
-        returnTo: "/profile",
-      },
-    });
+    await loginWithRedirect();
   };
 
   return (

@@ -10,7 +10,6 @@ import theme from './theme'
 console.log(theme)
 // import Players from "./components/Players";
 import Profile from "./components/Profile";
-import NavButtons from "./components/NavButtons";
 import League from "./components/League";
 import NotFound from './components/NotFound' 
 import Picks from "./components/Picks";
@@ -26,7 +25,6 @@ const router = createBrowserRouter(
     <Route element={<AuthProviderLayout/>}>
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Players />} />
-      {/* <Route path="login" element={<Login />} /> */}
       <Route path="callback" element={<Callbacks />} />
       <Route path="profile/:userid" element={<ProfileLayout />}>
         <Route index element={<Profile/>} />

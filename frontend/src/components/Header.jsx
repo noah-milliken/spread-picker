@@ -5,16 +5,12 @@ import MenuItem from "./MenuItem"
 import { useParams } from 'react-router-dom'
 import { PiFootball } from "react-icons/pi";
 import ColorModeToggle from './ColorModeToggle'
-import { useAuth0 } from "@auth0/auth0-react";
 import NavButtons from './NavButtons'
 const Header = (props) => {
     const [show,setShow] = useState(false)
     const toggleMenu = () => setShow(!show)
     const {userid, week} = useParams()
   
-    const { loginWithRedirect, } = useAuth0();
-
-
     return (
    
     <Flex
@@ -46,7 +42,6 @@ const Header = (props) => {
           pt={[4, 4, 0, 0]}
           >
             <NavButtons />
-            {/* <MenuItem onClick={() => loginWithRedirect()}>Login</MenuItem> */}
             <MenuItem to={`/profile/${userid}`}>Home</MenuItem>
             <MenuItem to={`/profile/${userid}/league`}>Leagues</MenuItem>
             <MenuItem to={`/profile/${userid}/picks/${week|| 10}`}>Picks </MenuItem>

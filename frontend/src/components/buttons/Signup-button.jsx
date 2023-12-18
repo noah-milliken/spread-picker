@@ -5,10 +5,8 @@ export const SignupButton = () => {
   const { loginWithRedirect } = useAuth0();
 
   const handleSignUp = async () => {
-    await loginWithRedirect({
-      appState: {
-        returnTo: "/profile",
-      },
+    await loginWithRedirect(
+      {
       authorizationParams: {
         screen_hint: "signup",
       },
