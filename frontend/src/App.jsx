@@ -7,6 +7,7 @@ import {
 import { ColorModeScript} from "@chakra-ui/react";
 import { ChakraProvider} from "@chakra-ui/react";
 import theme from './theme'
+import AuthenticationGuard from "./utils/AuthenticationGuard";
 console.log(theme)
 // import Players from "./components/Players";
 import Profile from "./components/Profile";
@@ -18,16 +19,17 @@ import RootLayout from "./layouts/RootLayout";
 import { ProfileLayout } from "./layouts/ProfileLayout";
 import Callbacks from "./components/Callbacks";
 import AuthProviderLayout from "./utils/AuthProviderLayout";
-import Players from "./components/Players"; 
+import Landing from "./components/Landing";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<AuthProviderLayout/>}>
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<Players />} />
-      <Route path="callback" element={<Callbacks />} />
-      <Route path="profile/:userid" element={<ProfileLayout />}>
-        <Route index element={<Profile/>} />
+      <Route index element={<Landing />} />
+      <Route path="profile" element={
+      <AuthenticationGuard component={ProfileLayout} />}>
+        <Route path='dashboard'element={<Profile/>} />
+        <Route path="callback" element={<Callbacks />} />
         <Route path="league" element={<League />} />
         <Route path="picks/:week" element={<Picks />} />
       </Route>
