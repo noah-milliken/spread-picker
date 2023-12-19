@@ -6,10 +6,17 @@ import { useParams } from 'react-router-dom'
 import { PiFootball } from "react-icons/pi";
 import ColorModeToggle from './ColorModeToggle'
 import NavButtons from './NavButtons'
+import { useAuth0 } from '@auth0/auth0-react'
+import { LoginButton } from './buttons/Login-button'
+import { LogoutButton } from './buttons/Logout-button'
+import { SignupButton } from './buttons/Signup-button'
 const Header = (props) => {
     const [show,setShow] = useState(false)
     const toggleMenu = () => setShow(!show)
     const {userid, week} = useParams()
+    const {isAuthenticated} = useAuth0()
+
+
   
     return (
    
@@ -36,15 +43,27 @@ const Header = (props) => {
             flexBasis={{base: '100%', md: 'auto'}}
         >
           <Flex
-          align={["center", "center", "center", "center"]}
-          justify={["center", "space-between", "flex-end", "flex-end"]}
+          align={'center'}
+          justify={["center", "flex-end", "flex-end"]}
           direction={["column", "row", "row", "row"]}
           pt={[4, 4, 0, 0]}
           >
-            <NavButtons />
-            <MenuItem to={`/profile/${userid}`}>Home</MenuItem>
+            {!isAuthenticated && (
+              <>
+              <MenuItem><SignupButton/></MenuItem>
+              <MenuItem><LoginButton/></MenuItem>
+              
+              </>
+            )}
+           {isAuthenticated && (
+              <>
+              <MenuItem><LogoutButton /></MenuItem>
+                
+              </>
+      )}
+            <MenuItem to={`/profile/dashboard`}>Home</MenuItem>
             <MenuItem to={`/profile/${userid}/league`}>Leagues</MenuItem>
-            <MenuItem to={`/profile/${userid}/picks/${week|| 10}`}>Picks </MenuItem>
+            <MenuItem to={`/profile/${userid}/picks/${week|| 16}`}>Picks </MenuItem>
             <ColorModeToggle />
         </Flex>
         

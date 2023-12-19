@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { Button } from "@chakra-ui/react";
 export const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
@@ -8,8 +8,8 @@ export const LoginButton = () => {
   };
 
   return (
-    <button className="button__login" onClick={handleLogin}>
+    <Button  onClick={handleLogin}>
       Log In
-    </button>
+    </Button>
   );
 };
