@@ -1,7 +1,9 @@
-import { Flex, Heading, Image, Container, Text, Button } from "@chakra-ui/react"
+import { Flex, Heading, Image, Container, Text } from "@chakra-ui/react"
 
-
+import { LoginButton } from "./buttons/Login-button"
+import { SignupButton } from "./buttons/Signup-button"
 const Landing = () => {
+
     return (
         <>
             <Flex
@@ -41,8 +43,8 @@ const Landing = () => {
                         direction={'row'}
                         justify={'space-around'}
                         >
-                            <Button variant={'solid'} colorScheme="blue">Sign Up!</Button>
-                            <Button variant={'solid'} colorScheme="blue">Login</Button>
+                            <LoginButton/>
+                            <SignupButton/>
                         </Flex>
                      
                     </Flex>
